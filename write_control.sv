@@ -11,7 +11,8 @@ module write_control #(
 	output				[AW - 1:0]		o_waddr          ,
 	output 											o_wen            ,
 	output 											o_almostfull     , // FIFO almostempty flag (determined by i_almostempty_lvl)
-	output 											o_full             // FIFO empty flag
+	output 											o_full           ,  // FIFO empty flag
+	output                 			o_ready_s        
 );
 	
 
@@ -19,6 +20,8 @@ module write_control #(
 	assign o_waddr = o_wptr[AW - 1:0];
 
 	assign o_full  = ({~o_wptr[AW],o_wptr[AW - 1:0]} == i_rptr);
+
+	assign o_ready_s = ~o_full;
 
 	assign o_wen   = ~o_full & i_valid_s;
 

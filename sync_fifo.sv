@@ -52,7 +52,8 @@ module sync_fifo #(
 		.o_waddr          (waddr       	   ),
 		.o_wen            (wen         	   ),
 		.o_almostfull     (o_almostfull    ),
-		.o_full           (o_full          )
+		.o_full           (o_full          ),
+		.o_ready_s		  (o_ready_s	   )
 	);
 
 	read_control #(
@@ -67,6 +68,7 @@ module sync_fifo #(
 		.o_raddr           (raddr            ),
 		.o_ren             (ren              ),
 		.o_almostempty     (o_almostempty    ),
-		.o_empty           (o_empty          )
+		.o_empty           (o_empty          ),
+		.o_valid_m 		   (o_valid_m        )
 	);
 endmodule

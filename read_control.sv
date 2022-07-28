@@ -11,12 +11,15 @@ module read_control #(
 	output			[AW - 1:0]		o_raddr          ,
 	output							o_ren            ,
 	output							o_almostempty    , // FIFO almostempty flag (determined by i_almostempty_lvl)
-	output							o_empty            // FIFO empty flag
+	output							o_empty          ,  // FIFO empty flag
+	output               		    o_valid_m        
 );
 
 	assign o_raddr = o_rptr[AW - 1:0];
 
 	assign o_empty = (o_rptr == i_wptr);
+
+	assign o_valid_m = ~o_empty;
 
 	assign o_ren   = ~o_empty & i_ready_m;
 
